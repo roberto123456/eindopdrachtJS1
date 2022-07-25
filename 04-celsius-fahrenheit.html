@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>04-celsius-fahrenheit</title>
+  </head>
+  <body>
+    <button type="button" name="button" onclick="verstuurC()">Omzetten C naar F</button>
+    <button type="button" name="button" onclick="verstuurF()">Omzetten F naar C</button>
+    <script type="text/javascript">
+      "use strict";
+
+      let graden;
+      let uitkomst;
+      let controle = false;
+
+      controle = () =>{
+        if (graden == null){
+          return "U heeft geannuleerd.";
+        } 
+        else if (graden.length == 0){
+          return "Vul in a.u.b.";
+        } 
+        else if (isNaN(graden)){
+          return "Dit is geen cijfer.";
+        } else {
+          return true;
+        }
+      }
+
+      let verstuurC = () =>{
+        graden = prompt ("Hoeveel graden wilt u omzetten?", "20");
+        controle(graden);
+
+        if (controle() == true){
+          uitkomst = (graden*9)/5+32;
+          alert(`${graden}°C is ${uitkomst}°F`);
+        } else {
+          alert(controle());
+        }
+      }
+
+      let verstuurF = () =>{
+        graden = prompt ("Hoeveel graden wilt u omzetten?", "20");
+        controle(graden);
+
+        if (controle() == true){
+          uitkomst = ((graden-32)*5)/9;
+          alert(`${graden}°F is ${uitkomst}°C`);
+        } else {
+          alert(controle());
+        }
+      }
+    </script>
+
+  </body>
+</html>

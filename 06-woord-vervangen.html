@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>06-woord-vervangen</title>
+  </head>
+  <body>
+    <h1>Vervang het woord</h1>
+
+    <form>
+      <p>
+        <label>
+          Zin: <br>
+          <input type="text" id="zin" value="JavaScript rocks!">
+        </label>
+      </p>
+      <p>
+        <label>
+          Zoek dit woord:
+          <input type="text" id="zoekterm">
+        </label>
+      </p>
+      <p>
+        <label>
+          Dit woord komt in de plaats:
+          <input type="text" id="vervangterm">
+        </label>
+      </p>
+      <p><button type="button" name="button" onclick="verzend()">Vervang</button></p>
+      <p>
+        De nieuwe zin: <br>
+        <input type="text" id="resultaat" value="">
+      </p>
+    </form>
+    <script type="text/javascript">
+      "use strict";
+
+      function validated(input) {
+      let string = document.getElementById(input).value;
+      if(!string.length > 0){
+        alert(`Je hebt nog geen ${input} ingevuld!`);
+        return false;
+      }
+      return true;
+    }
+
+    function verzend(){
+      if(!validated("zin") || !validated("zoekterm") || !validated("vervangterm")) {
+        return;
+      }
+      
+      vervangWoord(
+        document.getElementById("zin").value,
+        document.getElementById("zoekterm").value,
+        document.getElementById("vervangterm").value
+        );
+    }
+
+    function vervangWoord(string,zoekstring,vervangstring) {
+      let gevonden = string.indexOf(zoekstring);
+
+      if(!(gevonden >= 0)) {
+        document.getElementById("resultaat").value = "Dit woord is niet gevonden!";
+        return;
+      }
+
+      document.getElementById("resultaat").value = string.replace(zoekstring, vervangstring);
+    }
+    </script>
+  </body>
+</html>
